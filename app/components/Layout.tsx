@@ -1,48 +1,6 @@
-import { css, cx } from 'hono/css'
+import { cx } from 'hono/css'
 import { FC } from 'hono/jsx'
 import { useRequestContext } from 'hono/jsx-renderer'
-
-const className = css``
-
-const headerClass = css`
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
-  padding: 0.5rem 1rem;
-`
-
-const titleClass = css`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0;
-`
-
-const navClass = css`
-  display: flex;
-  gap: 1rem;
-`
-
-const linkClass = css`
-  &:hover {
-    background-color: #f4f4f4;
-  }
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  color: #262626;
-  border-radius: 3px;
-`
-
-const activeLinkClass = css`
-  background-color: #f4f4f4;
-`
-
-const containerClass = css`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
-`
 
 const links = [
   { href: '/articles', text: 'Articles' },
@@ -54,23 +12,28 @@ export const Layout: FC = ({ children }) => {
   const path = context.req.path
 
   return (
-    <div class={className}>
-      <header class={headerClass}>
-        <h1 class={titleClass}>
-          <a href="/" class={linkClass}>
-            {' '}
+    <div class="w-full">
+      <header class="border-b border-gray-300 px-4 py-3 flex items-center justify-between">
+        <h1 class="text-xl font-bold">
+          <a href="/" class="text-blue-600 hover:text-blue-900">
             HonoX Blog 🔥
           </a>
         </h1>
-        <nav class={navClass}>
+        <nav class="space-x-4">
           {links.map((link) => (
-            <a href={link.href} class={cx(linkClass, path === link.href && activeLinkClass)}>
+            <a
+              href={link.href}
+              class={cx(
+                'px-3 py-1 rounded border border-transparent hover:bg-gray-100 transition-colors',
+                path === link.href && 'bg-gray-100',
+              )}
+            >
               {link.text}
             </a>
           ))}
         </nav>
       </header>
-      <main class={containerClass}>{children}</main>
+      <main class="max-w-3xl mx-auto p-4">{children}</main>
     </div>
   )
 }
