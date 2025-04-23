@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "my-app",
+  "name": "motty-gadget-blog",
   "main": "./dist/index.js",
   "compatibility_date": "2025-04-07",
   "compatibility_flags": ["nodejs_compat"],
